@@ -2,13 +2,22 @@ import logo from './logo.svg';
 import React, { Component, useState } from 'react'; 
 import './App.css';
 
+const useInput = initialValue => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = event => {
+    console.log(event.target);
+  }
+  return {value, onChange};
+}
+
+
 const App = () => {
-  const [ count , setCount ] = useState(0);
+  const name = useInput("Mr.");
   return (
-    <>
-      { count }
-      <button onClick = { () => setCount(count +1) } >Increment</button>
-    </>
+    <div cvlassName = "App">
+        <h1>Hello</h1>
+        <input placeholder="Name" {...name} />
+    </div>
   );
 }
 
