@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
+  const sayHello = () => console.log("hello");
   const [number, setNumber] = useState(0);
   const [aNumber, setAnumber] = useState(0);
+  useEffect(sayHello, [number]);
+
   return (
     <div cvlassName = "App">
         <h1>Hi</h1>
@@ -15,3 +18,4 @@ const App = () => {
 };
 
 export default App;
+
