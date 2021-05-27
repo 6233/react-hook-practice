@@ -1,23 +1,28 @@
 import logo from './logo.svg';
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
 import './App.css';
 
-const useTitle = (initialTitle) => {
-  const [title, setTitle] = useState(initialTitle)
-  const updateTitle = () => {
-    const htmlTitle = document.querySelector("title");
-    htmlTitle.innerText = title;
+const useConfirm = (message = "", callback) => {
+  if (typeof callback !== "function") {
+    return;
+  }
+
+  const confirmAction = () => {
+    if (window.confirm(message)) {
+      callback();
+    }
   };
-  useEffect(updateTitle, [title]);
-  return setTitle;
-};
+  return confirmAction;
+}
+
 
 const App = () => {
-  const titleUpdater = useTitle("Loading...");
-  setTimeout(() => titleUpdater("Home"), 5000);
+  const deleteWorld = () => console.log("DeletingWolrd");
+  const aborted = () => console.log("aborted");
+  const confirmDelete = useConfirm("Are you sure", deleteWorld, aborted);
   return (
     <div cvlassName = "App">
-        <h1>Hi</h1>
+        <botton onClick = {confirmDelete} >delete the world</botton>
     </div>
   );
 };
